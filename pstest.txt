@@ -1,0 +1,31 @@
+Get-ChildItem "C:\Program Files" -Recurse -Force |
+  Where-Object { $_.PsIsContainer -eq $false } |
+  Get-Acl | Where-Object { $_.AccessToString -match "BUILTIN\\Users.*Allow.*Write" }
+
+
+
+driverquery /v
+fltmc filters
+sc query type= driver
+
+
+
+ipconfig /all
+netstat -ano
+Get-NetTCPConnection
+arp -a
+
+
+
+reg query HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential
+findstr /si password *.txt *.ini *.config 2>nul
+
+
+
+wmic logicaldisk get name,freespace,filesystem
+Get-CimInstance Win32_StartupCommand
+Get-CimInstance Win32_ScheduledTask
+Get-LocalGroupMember Administrators
+Get-WmiObject Win32_Service | where {$_.StartName -match "LocalSystem" -and $_.PathName -notmatch '"'}
+
+
